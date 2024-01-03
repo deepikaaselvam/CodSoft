@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.calculator {
+    width: 300px;
+    margin: 0 red;
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.button {
+    width: 60px;
+    height: 50px;
+    float: left;
+    margin: 5px;
+    background: #eee;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.display {
+    width: 100%;
+    height: 50px;
+    margin: 10px 0;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    font-size: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="calculator">
+ <div class="display" id="display">0</div>
+ <div class="button" onclick="addDigit('7')">7</div>
+ <div class="button" onclick="addDigit('8')">8</div>
+ <div class="button" onclick="addDigit('9')">9</div>
+ <div class="button" onclick="performOperation('/')">/</div>
+  
+ <div class="button" onclick="addDigit('4')">4</div>
+ <div class="button" onclick="addDigit('5')">5</div>
+ <div class="button" onclick="addDigit('6')">6</div>
+ <div class="button" onclick="performOperation('*')">*</div>
+  
+ <div class="button" onclick="addDigit('1')">1</div>
+ <div class="button" onclick="addDigit('2')">2</div>
+ <div class="button" onclick="addDigit('3')">3</div>
+ <div class="button" onclick="performOperation('-')">-</div>
+  
+ <div class="button" onclick="addDigit('0')">0</div>
+ <div class="button" onclick="performOperation('+')">+</div>
+ <div class="button" onclick="calculateResult()">=</div>
+ <div class="button" onclick="clearDisplay()">C</div>
+</div>
+
+<script>
+var display = document.getElementById('display');
+var operation = '';
+var operand1 = 0;
+var operand2 = null;
+
+function addDigit(digit) {
+    display.textContent += digit;
+}
+
+function performOperation(op) {
+    operand1 = parseFloat(display.textContent);
+    operation = op;
+    display.textContent = '';
+}
+
+function calculateResult() {
+    operand2 = parseFloat(display.textContent);
+    switch (operation) {
+        case '+':
+            display.textContent = operand1 + operand2;
+            break;
+        case '-':
+            display.textContent = operand1 - operand2;
+            break;
+        case '*':
+            display.textContent = operand1 * operand2;
+            break;
+        case '/':
+            display.textContent = operand1 / operand2;
+            break;
+    }
+}
+
+function clearDisplay() {
+    display.textContent = '0';
+    operation = '';
+    operand1 = 0;
+    operand2 = null;
+}
+</script>
+
+</body>
+</html>
+
+
